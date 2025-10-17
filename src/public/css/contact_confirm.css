@@ -1,0 +1,97 @@
+/* --- 確認画面 (confirm.blade.php) のスタイル --- */
+
+/* 確認画面のテーブルコンテナ */
+.confirm-table {
+    border-collapse: collapse;
+    /* セルの境界線を結合 */
+    width: 100%;
+    margin-top: 20px;
+    border: 1px solid #ddd;
+    /* 外枠の線（オプション） */
+}
+
+/* テーブルの行 */
+.confirm-table tr {
+    border-bottom: 1px solid #ddd;
+    /* 行の区切り線 */
+}
+
+.onamae {
+    display: flex;
+}
+
+.spece {
+    margin-left: 5px;
+}
+
+/* ラベルセル (<th>) */
+.confirm-label {
+    width: 30%;
+    /* ラベルの幅を指定 */
+    background-color: #f5eee8;
+    /* 画像に近い薄い茶色/ベージュの背景色 */
+    padding: 15px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #444;
+    text-align: left;
+    /* テキストを左寄せ */
+    vertical-align: top;
+    /* 内容が長い場合に上端に揃える */
+}
+
+/* 値セル (<td>) */
+.confirm-value {
+    width: 70%;
+    /* 値の幅を指定 */
+    padding: 15px 20px;
+    font-size: 14px;
+    background-color: #fff;
+    white-space: pre-wrap;
+
+    text-align: left;
+}
+
+
+
+/* 最後の行の区切り線を削除（任意） */
+.confirm-table tr:last-child {
+    border-bottom: none;
+}
+
+
+/* 確認画面のボタン配置 (変更なし) */
+.form__button--confirm {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.form__button--confirm .submit-button {
+    background-color: #7d6556;
+    color: #fff;
+    border: none;
+    padding: 12px 40px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 3px;
+    margin-right: 20px;
+    transition: background-color 0.3s;
+}
+
+.form__button--confirm .submit-button:hover {
+    background-color: #6a5344;
+}
+
+.form__button--confirm .back-button {
+    background-color: transparent;
+    border: none;
+    color: #999;
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 10px;
+}
+
+.form__button--confirm .back-button:hover {
+    color: #666;
+}
