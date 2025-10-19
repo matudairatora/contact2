@@ -33,7 +33,7 @@
             <tr>
                 <th class="confirm-label">性別</th>
                 <td class="confirm-value">
-                {{ $data['gender'] }}
+                {{ $data['gender_text'] }}
                 </td>
             </tr>
 
@@ -65,14 +65,14 @@
             <tr>
                 <th class="confirm-label">お問い合わせの種類</th>
                 <td class="confirm-value category_id">
-                   {{ $data['category_id'] }}
+                   {{ $data['content'] }}
                 </td>
             </tr>
 
             {{-- 8. お問い合わせ内容 --}}
             <tr>
                 <th class="confirm-label">お問い合わせ内容</th>
-                <td class="confirm-value">{{ nl2br(e($data['detail'])) }}</td>
+                <td class="confirm-value">{{ $data['detail'] }}</td>
             </tr>
 
         </table>

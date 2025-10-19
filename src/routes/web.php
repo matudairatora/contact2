@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\ContactController;
 
+use App\Http\Controllers\AdminController;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,3 +29,8 @@ Route::post('/thanks', [ContactController::class, 'send']);
 // ★データ保存とサンクスページへ遷移 (POST /thanks)
 Route::post('/thanks', [ContactController::class, 'send']);
 
+Route::middleware('auth')->group(function () {
+     Route::get('/admin', [AdminController::class, 'index']);
+ });
+
+ Route::post('/login', [AdminController::class, 'login']);
