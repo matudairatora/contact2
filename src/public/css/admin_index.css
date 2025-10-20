@@ -1,113 +1,131 @@
-/* ... (検索パネル、テーブルなどのスタイルは省略、前回の回答と共通) ... */
-
-
-/* ==================== モーダルウィンドウ (CSSトリック対応) ==================== */
-
-/* ★1. チェックボックスを完全に非表示にする */
-.modal-toggle {
-    display: none;
+/* ================================================= */
+/* 共通コンテナ・ヘッダー (index.cssと共通)           */
+/* ================================================= */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+    line-height: 1.6;
 }
 
-/* ★2. モーダルオーバーレイの基本スタイル */
-.modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-
-    /* ★初期状態は非表示 */
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s, visibility 0.3s;
-}
-
-/* ★3. チェックボックスがONになったらモーダルを表示 */
-.modal-toggle:checked+.modal-overlay {
-    opacity: 1;
-    visibility: visible;
-}
-
-/* モーダルコンテンツ */
-.modal-content {
-    background: #fff;
-    padding: 30px;
+.container {
+    max-width: 800px;
+    margin: 60px auto;
+    padding: 40px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
-    width: 90%;
-    max-width: 600px;
-    position: relative;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    z-index: 1001;
-    /* オーバーレイより上に配置 */
-    /* モーダル表示時のアニメーション */
-    transform: scale(0.8);
-    transition: transform 0.3s;
 }
 
-/* チェックボックスがONになったらコンテンツを通常サイズに戻す */
-.modal-toggle:checked+.modal-overlay .modal-content {
-    transform: scale(1);
-}
-
-/* モーダルの外側の背景部分 */
-/* 外側をクリックして閉じれるように、オーバーレイ全体を閉じるラベルにする */
-.modal-background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
-
-.modal-close {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    background: none;
-    border: none;
-    font-size: 24px;
-    cursor: pointer;
-    opacity: 0.6;
-    z-index: 1002;
-}
-
-.modal-title {
-    font-size: 24px;
+.container h2 {
+    font-size: 32px;
     font-weight: bold;
-    margin-bottom: 20px;
     text-align: center;
+    margin-bottom: 40px;
 }
 
-.modal-detail-table {
+/* ================================================= */
+/* 確認画面のテーブルスタイル                          */
+/* ================================================= */
+.confirm-table {
     width: 100%;
     border-collapse: collapse;
+    margin-bottom: 30px;
+    table-layout: fixed;
+    /* テーブル幅を固定 */
 }
 
-.modal-detail-table th,
-.modal-detail-table td {
-    padding: 10px 0;
-    text-align: left;
+.confirm-table tr {
     border-bottom: 1px solid #eee;
 }
 
-.modal-detail-table th {
-    width: 35%;
-    font-weight: bold;
-    color: #555;
-    vertical-align: top;
-}
-
-.modal-detail-text {
-    /* お問い合わせ内容が長い場合に自動で改行 */
-    word-break: break-all;
-}
-
-.modal-detail-table tr:last-child th,
-.modal-detail-table tr:last-child td {
+.confirm-table tr:last-child {
     border-bottom: none;
+}
+
+/* ラベル (<th>) */
+.confirm-label {
+    width: 30%;
+    /* ラベルの幅 */
+    padding: 20px 0;
+    padding-left: 20px;
+    /* 左側に余白 */
+    vertical-align: top;
+    font-weight: bold;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+/* 値の表示 (<td>) */
+.confirm-value {
+    width: 70%;
+    /* 値の幅 */
+    padding: 20px 20px 20px 0;
+    word-wrap: break-word;
+    /* 長い文字列の折り返し */
+    box-sizing: border-box;
+}
+
+/* お名前 (last_name + first_name) のスペース調整 */
+.confirm-value.onamae {
+    /* 画像のように、姓と名の間に空白を入れるためのスペース調整 */
+    letter-spacing: 1px;
+}
+
+/* お問い合わせ内容 (detail) の表示 */
+.confirm-value textarea,
+.confirm-value.detail-content {
+    /* 確認画面ではテキストエリアではなく、プレーンテキストとして表示 */
+    white-space: pre-wrap;
+    /* 改行を保持 */
+    min-height: 50px;
+    display: block;
+}
+
+/* ================================================= */
+/* ボタンエリア                                     */
+/* ================================================= */
+.form__button--confirm {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.form__button--confirm button {
+    padding: 15px 50px;
+    border: none;
+    border-radius: 3px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: opacity 0.3s;
+    margin: 0 10px;
+    /* ボタン間のスペース */
+}
+
+/* 送信ボタン */
+.submit-button {
+    background-color: #333;
+    color: #fff;
+}
+
+.submit-button:hover {
+    opacity: 0.8;
+}
+
+/* 修正ボタン */
+.back-button {
+    background-color: transparent;
+    color: #333;
+    text-decoration: underline;
+    /* 画像に合わせた下線 */
+    padding: 5px 10px;
+    /* 押せる領域を小さく */
+    font-size: 16px;
+    /* 文字サイズを少し小さく */
+    font-weight: normal;
+
+}
+
+.back-button:hover {
+    color: #555;
 }

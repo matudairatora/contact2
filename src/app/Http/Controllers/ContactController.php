@@ -32,7 +32,7 @@ class ContactController extends Controller
     }
     
     
-    public function send(CategoryRequest $request)
+    public function send(Request $request)
     {
         $category_content = $request->input('content');
 
@@ -41,7 +41,7 @@ class ContactController extends Controller
         ]);
 
         $contact = $request->only([
-            'category_id', 'first_name', 'last_name', 'gender', 'email', 'tel', 'address', 'building', 'detail'
+           'first_name', 'last_name', 'gender', 'email', 'tel', 'address', 'building', 'detail'
         ]); 
        $contact['category_id'] = $new_category->id;
        Contact::create($contact);

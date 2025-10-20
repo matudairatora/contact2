@@ -9,7 +9,7 @@
 <div class="container">
     <h2>Confirm</h2>
     
-    <form method="POST" action="/thanks"> 
+    <form method="post" action="/thanks"> 
         @csrf
         
         {{-- 全てのデータを hidden フィールドとして保持 --}}

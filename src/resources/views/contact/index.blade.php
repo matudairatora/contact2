@@ -22,7 +22,7 @@
     <h2>Contact</h2>
     
 
-    <form method="POST" action="/confirm"> 
+    <form method="post" action="/confirm"> 
         @csrf
          <table class="confirm-table">
         {{-- 1. 氏名 --}}

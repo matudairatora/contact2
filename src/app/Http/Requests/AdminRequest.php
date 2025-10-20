@@ -35,7 +35,7 @@ class AdminRequest extends FormRequest
             'name.required' => '名前を入力してください',
             'email.required' => 'メールアドレスを入力してください',
             'email.email' => 'メールアドレスはメール形式で入力してください',
-            'password.required' => 'お問い合わせを入力してください',
+            'password.required' => 'パスワードを入力してください',
             ];
      }
 
