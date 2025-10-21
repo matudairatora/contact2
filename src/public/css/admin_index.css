@@ -64,6 +64,66 @@ body {
 }
 
 /* ------------------------------------- */
+/* ページネーション関連のスタイル */
+/* ------------------------------------- */
+
+/* ページネーションリンク全体のコンテナ */
+.pagination-links {
+    margin-top: 30px;
+    /* テーブルとの間にスペース */
+    display: flex;
+    justify-content: center;
+    /* 中央寄せ */
+}
+
+/* ページネーションのリンクグループ (「前へ」とページ番号、「次へ」のコンテナ) */
+.pagination-links nav>div:first-child,
+.pagination-links nav>div:nth-child(2) {
+    /* ページネーションのリンクをflexで横並びにする */
+    display: flex;
+    align-items: center;
+}
+
+/* 個々のリンク・数字ボタン (aタグとspanタグ) */
+.pagination-links a,
+.pagination-links span {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 38px;
+    /* ボタンの最小幅 */
+    height: 38px;
+    margin: 0 4px;
+    padding: 0 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    /* 角を丸く */
+    color: #000;
+    text-decoration: none;
+    transition: background-color 0.2s;
+}
+
+/* 現在のページ (current page) のボタン */
+/* LaravelのデフォルトHTMLに出力されるTailwindクラス名（.relative.inline-flex.items-center...）を対象にしています */
+.pagination-links span.relative.inline-flex.items-center.px-4.py-2.text-sm.font-semibold.text-white.bg-gray-800.border-gray-800.leading-5 {
+    background-color: #000;
+    color: #fff;
+    border-color: #000;
+    font-weight: bold;
+}
+
+/* ホバー時のスタイル */
+.pagination-links a:hover {
+    background-color: #eee;
+}
+
+/* "次へ" "前へ" のアイコン */
+.pagination-links svg {
+    display: none !important;
+
+}
+
+/* ------------------------------------- */
 /* 検索パネル (Search Panel) */
 /* ------------------------------------- */
 .search-panel {
@@ -80,13 +140,15 @@ body {
     grid-template-columns: 2fr 1fr 1fr;
     gap: 25px 30px;
 }
-.search-panel{
-   
-    
+
+.search-panel {
+
+
     gap: 30px;
     align-items: center;
     margin-bottom: 10px;
 }
+
 /* 最初の行全体を占めるグループ */
 
 
@@ -141,7 +203,7 @@ body {
 
 /* 日付範囲のグループ */
 .search-form__date-range {
-   
+
     align-items: center;
 }
 
@@ -207,7 +269,52 @@ body {
     color: #555;
 }
 
+.export-button {
+    /* サイズと形状 */
+    display: inline-block;
+    padding: 8px 15px;
+    /* 内側の余白 (上下 8px, 左右 15px) */
+    border-radius: 4px;
+    /* 角の丸み */
+    border: none;
+    /* デフォルトの枠線を削除 */
+    cursor: pointer;
+    /* マウスオーバー時にカーソルを指マークに */
+    text-decoration: none;
+    /* aタグの場合、下線を削除 */
+    font-size: 16px;
+    /* フォントサイズ */
+    line-height: 1;
+    /* 行の高さを調整 */
 
+    /* 色の指定 */
+    background-color: #e6e0d8;
+    /* ボタンの背景色 (薄いベージュ/グレー) */
+    color: #5d5656;
+    /* 文字の色 (濃い茶色/グレー) */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    /* 軽い影を付けて立体感を出す */
+    transition: background-color 0.2s, box-shadow 0.2s;
+    /* ホバー時のアニメーション */
+}
+
+/* ホバー（マウスオーバー）時のスタイル */
+.export-button:hover {
+    background-color: #d8cbbc;
+    /* 背景を少し濃くする */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+    /* 影を強調する */
+}
+
+/* クリック（アクティブ）時のスタイル */
+.export-button:active {
+    background-color: #c9b4a4;
+    /* さらに濃くして、押した感を出す */
+    box-shadow: none;
+    /* 影を消す */
+    transform: translateY(1px);
+    /* 少し下に動かして、沈んだように見せる */
+}
 /* ------------------------------------- */
 /* テーブルとページネーション */
 /* ------------------------------------- */
@@ -396,5 +503,5 @@ body {
     top: 15px;
     right: 25px;
     font-size: 35px;
-    font-weight: 300;}
-    
+    font-weight: 300;
+}

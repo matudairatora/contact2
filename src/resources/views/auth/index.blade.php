@@ -6,15 +6,44 @@
     <title>FashionablyLate | Admin</title>
 
     {{-- CSSの読み込み --}}
-    <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}">
+    
     <link rel="stylesheet" href="{{ asset('css/admin_index.css') }}">
+<script>
+    // ★ JavaScriptを追加し、検索条件をエクスポートURLに付与する ★
+    document.getElementById('export-csv-button').addEventListener('click', function() {
+        
+        // CSV出力のベースURLをBladeヘルパーで取得
+        // '{{ route("admin.export") }}' の部分は、BladeがPHPとして処理します。
+        const baseUrl = '{{ route("admin.export") }}'; 
+        
+        // 現在の検索フォームの全てのクエリパラメータを取得
+        const searchForm = document.getElementById('search-form');
+        const formData = new FormData(searchForm);
+        const params = new URLSearchParams();
+        
+        // FormDataから検索条件をパラメータとして追加
+        for (const [key, value] of formData.entries()) {
+            // リセットボタンの name や submitボタンなど不要なものを除外
+            // value !== '' のチェックも重要
+            if (key !== '_token' && value !== null && value !== '') {
+                params.append(key, value);
+            }
+        }
+        
+        // 新しいURLを作成して遷移
+        // パラメータがない場合は ? は付かない
+        const exportUrl = baseUrl + (params.toString() ? '?' + params.toString() : '');
 
+        // ダウンロード実行
+        window.location.href = exportUrl;
+    });
+</script>
 </head>
 <body>
 
     {{-- ヘッダー領域 --}}
     <header class="header">
-        <h1 class="header__title">管理システム</h1>
+        <h1 class="header__title">FashionablyLate</h1>
 
         {{-- ログアウトボタン (Fortifyのログアウトルートは POST /logout です) --}}
         <form method="POST" action="/logout" class="header__logout">
@@ -26,7 +55,7 @@
 
     <main>
         <div class="container">
-            <h2>お客様情報</h2>
+            <h2>Admin</h2>
 
             {{-- =================================== --}}
             {{-- 1. 検索・絞り込みエリア --}}
@@ -42,7 +71,7 @@
                     
                     <div class="search-form__group">
                         {{-- 性別絞り込み --}}
-                        <select class="search-form__select" name="gender">
+                        <select class="search-form__select" name="gender" >
                             <option value="">性別</option>
                             <option value="1" {{ (int)request('gender') === 1 ? 'selected' : '' }}>男性</option>
                             <option value="2" {{ (int)request('gender') === 2 ? 'selected' : '' }}>女性</option>
@@ -53,20 +82,20 @@
 
                     <div class="search-form__group">
                         {{-- お問い合わせの種類絞り込み --}}
-                        <select class="search-form__select" name="category_id">
+                        <select class="search-form__select" name="content" >
                             <option value="">お問い合わせの種類</option>
-                            {{-- カテゴリデータをループで表示 --}}
-                            @foreach ($categories as $category)
-                                <option value="{{ $category->id }}" {{ (int)request('category_id') === $category->id ? 'selected' : '' }}>
-                                    {{ $category->content }}
-                                </option>
-                            @endforeach
+                            <option value="商品のお届けについて"{{ request('content') === '商品のお届けについて' ? 'selected' : '' }}>商品のお届けについて</option>
+                            <option value="商品の交換について"{{ request('content') === '商品の交換について' ? 'selected' : '' }}>商品の交換について</option>
+                            <option value="商品トラブル"{{ request('content') === '商品トラブル' ? 'selected' : '' }}>商品トラブル</option>
+                            <option value="ショップへのお問い合わせ"{{ request('content') === 'ショップへのお問い合わせ' ? 'selected' : '' }}>ショップへのお問い合わせ</option>
+                            <option value="その他"{{ request('content') === 'その他' ? 'selected' : '' }}>その他</option>
+                            
                         </select>
                     </div>
 
                     <div class="search-form__group search-form__date-range">
                        
-                        {{-- 日付範囲検索 (終了日) --}}
+                        {{-- 日付範囲検索  --}}
                         <input type="date" name="date_end" class="search-input--date" value="{{ request('date_end') }}">
                     </div>
 
@@ -79,12 +108,20 @@
                     </div>
                 </form>
             </div>
-
-            {{-- =================================== --}}
-            {{-- 2. 検索結果一覧とページネーション --}}
-            {{-- =================================== --}}
+             {{-- =================================== --}}
+             {{-- 2. 検索結果一覧とページネーション --}}
+             {{-- =================================== --}}
+            <div class="pagination-area"> 
+               
+                    
+                    <button id="export-csv-button" class="export-button" >
+                    エクスポート
+                    </button>
+               
+                {{ $contacts->links() }} 
+            </div>
             
-            
+        
             
             <table class="contact-table">
                 <thead>

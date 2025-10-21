@@ -46,6 +46,7 @@ class Contact extends Model
         return $query;
 
     }
+    
     public function scopeCategorySearch($query, $category_id)
     {
         if (!empty($category_id)) {
@@ -69,5 +70,15 @@ public function scopeDateEndSearch($query, $date_end)
         }
         return $query;
     }
-
+    public function scopeContentSearch($query, $content)
+    {
+        if (!empty($content)) {
+            
+            $query->whereHas('category', function ($q) use ($content) {
+                
+                $q->where('content', 'like', '%' . $content . '%');
+            });
+        }
+        return $query;
+    }
 }
