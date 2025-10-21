@@ -8,36 +8,7 @@
     {{-- CSSの読み込み --}}
     
     <link rel="stylesheet" href="{{ asset('css/admin_index.css') }}">
-<script>
-    // ★ JavaScriptを追加し、検索条件をエクスポートURLに付与する ★
-    document.getElementById('export-csv-button').addEventListener('click', function() {
-        
-        // CSV出力のベースURLをBladeヘルパーで取得
-        // '{{ route("admin.export") }}' の部分は、BladeがPHPとして処理します。
-        const baseUrl = '{{ route("admin.export") }}'; 
-        
-        // 現在の検索フォームの全てのクエリパラメータを取得
-        const searchForm = document.getElementById('search-form');
-        const formData = new FormData(searchForm);
-        const params = new URLSearchParams();
-        
-        // FormDataから検索条件をパラメータとして追加
-        for (const [key, value] of formData.entries()) {
-            // リセットボタンの name や submitボタンなど不要なものを除外
-            // value !== '' のチェックも重要
-            if (key !== '_token' && value !== null && value !== '') {
-                params.append(key, value);
-            }
-        }
-        
-        // 新しいURLを作成して遷移
-        // パラメータがない場合は ? は付かない
-        const exportUrl = baseUrl + (params.toString() ? '?' + params.toString() : '');
 
-        // ダウンロード実行
-        window.location.href = exportUrl;
-    });
-</script>
 </head>
 <body>
 
@@ -62,7 +33,7 @@
             {{-- =================================== --}}
             <div class="search-panel">
                 {{-- GETメソッドで検索を実行。リセットボタンもこのフォームの一部として扱う --}}
-                <form method="GET" action="/admin" class="search-form">
+                <form method="GET" action="/admin" class="search-form" id="search-form">
 
                     <div class="search-form__group">
                         {{-- キーワード検索 (お名前/メールアドレス) --}}
@@ -209,6 +180,44 @@
             @endforeach
         </div>
     </main>
+<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // CSV出力ボタンの要素を取得
+            const exportButton = document.getElementById('export-csv-button');
+            
+            // 検索フォームの要素を取得 (id="search-form" が必須)
+            const searchForm = document.getElementById('search-form'); 
 
+            if (!exportButton || !searchForm) {
+                // ボタンまたはフォームが見つからなかった場合は、スクリプトを終了
+                console.error("CSVエクスポートボタン (id='export-csv-button') または検索フォーム (id='search-form') が見つかりません。");
+                return;
+            }
+
+            exportButton.addEventListener('click', function() {
+                // CSV出力のベースURLをBladeヘルパーで取得
+                // BladeがPHPとして処理し、URLに変換されます
+                const baseUrl = '{{ route("admin.export") }}'; 
+                
+                // FormDataを使ってフォームの全入力値を取得
+                const formData = new FormData(searchForm);
+                const params = new URLSearchParams();
+                
+                // 取得した値をURLクエリパラメータに変換
+                for (const [key, value] of formData.entries()) {
+                    // CSRFトークンや値が空のフィールドを除外
+                    if (key !== '_token' && value !== null && value !== '') {
+                        params.append(key, value);
+                    }
+                }
+                
+                // 新しいURLを作成 (パラメータがあれば '?' を付ける)
+                const exportUrl = baseUrl + (params.toString() ? '?' + params.toString() : '');
+
+                // ダウンロードを実行
+                window.location.href = exportUrl;
+            });
+        });
+    </script>
 </body>
 </html>

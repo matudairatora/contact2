@@ -13,6 +13,8 @@ class CategorySeeder extends Seeder // ★クラス名は「CategorySeeder」で
      */
     public function run()
     {
+        DB::table('categories')->truncate();
+      
         $categories = [
             ['content' => '商品のお届けについて'],
             ['content' => '商品の交換について'],
@@ -20,7 +22,8 @@ class CategorySeeder extends Seeder // ★クラス名は「CategorySeeder」で
             ['content' => 'ショップへのお問い合わせ'],
             ['content' => 'その他'],
         ];
-
+      
+        
         // categoriesテーブルにデータを挿入
         DB::table('categories')->insert($categories);
     }

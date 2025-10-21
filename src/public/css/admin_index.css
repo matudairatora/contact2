@@ -315,6 +315,7 @@ body {
     transform: translateY(1px);
     /* 少し下に動かして、沈んだように見せる */
 }
+
 /* ------------------------------------- */
 /* テーブルとページネーション */
 /* ------------------------------------- */
@@ -486,6 +487,7 @@ body {
     max-width: 600px;
     position: relative;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    z-index: 50;
 
     /* アニメーションの初期位置（少し上に） */
     transform: translateY(-50px);
@@ -504,4 +506,5 @@ body {
     right: 25px;
     font-size: 35px;
     font-weight: 300;
+    z-index: 60;
 }

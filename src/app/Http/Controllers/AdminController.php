@@ -70,7 +70,7 @@ class AdminController extends Controller
             ->keywordSearch($request->input('keyword'))
             ->genderSearch($request->input('gender'))
             ->categorySearch($request->input('category_id'))
-            ->contentSearch($content->input('content')) 
+            ->contentSearch($request->input('content')) 
             ->dateStartSearch($request->input('date_start'))
             ->dateEndSearch($request->input('date_end'));
             

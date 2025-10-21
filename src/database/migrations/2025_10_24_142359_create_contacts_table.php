@@ -27,6 +27,7 @@ class CreateContactsTable extends Migration
             $table->text('detail');
             $table->timestamps();
         });
+        
     }
 
     /**
