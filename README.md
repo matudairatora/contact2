@@ -16,6 +16,8 @@
 - Laravel 10.0
 - MySQL 8.0
 
+### ER図
+- ![ER図](image/ER.png)
 ### URL
-- 開発環境：(http://localhost/)
-- phpMyAdmin：(http://localhost:8080/)
+- [開発環境](http://localhost/)
+- [phpMyAdmi](http://localhost:8080/)
