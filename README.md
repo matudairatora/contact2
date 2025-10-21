@@ -1,8 +1,8 @@
 # お問い合わせフォーム
 ## 環境構築
 ### Dockerビルド
-1.
-2.docker-compose up -d -build
+1. https://github.com/matudairatora/contact2
+2. docker-compose up -d -build
 #### Laravel環境構築
 1. docker-compose exec php bash
 2. composer install
