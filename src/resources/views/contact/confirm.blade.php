@@ -63,8 +63,8 @@
 
             {{-- 7. お問い合わせの種類 --}}
             <tr>
-                <th class="confirm-label">お問い合わせの種類</th>
-                <td class="confirm-value category_id">
+                <th class="confirm-label" >お問い合わせの種類</th>
+                <td class="confirm-value ">
                    {{ $data['content'] }}
                 </td>
             </tr>

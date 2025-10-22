@@ -92,13 +92,9 @@
                 <div class="form__input--tel">
                 {{-- 画像のレイアウトに合わせて3つの入力欄を作成。仕様書ではtelは1つのカラム --}}
                 <input type="text" name="tel_part1" placeholder="080" value="{{ old('tel_part1') }}">
-                <div class=spece> </div>
-                 -
-                <div class=spece> </div>
+                <span class="hyphen">-</span>
                 <input type="text" name="tel_part2" placeholder="1234" value="{{ old('tel_part2') }}">
-                <div class=spece> </div>
-                 -
-                 <div class=spece> </div>
+                <span class="hyphen">-</span>
                 <input type="text" name="tel_part3" placeholder="5678" value="{{ old('tel_part3') }}">
                
                 </div>

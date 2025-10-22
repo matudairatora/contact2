@@ -1,7 +1,7 @@
 /* 基本リセットとフォント */
 body {
     font-family: 'serif', sans-serif;
-    background-color: #f7f5f2;
+    background-color: #fff;
     color: #333;
     margin: 0;
     padding: 0;
@@ -21,6 +21,9 @@ body {
     font-size: 32px;
     font-weight: normal;
     letter-spacing: 1px;
+    border-bottom: 1px solid #000000;
+    padding: 10px;
+
 }
 
 /* コンテンツエリア */
@@ -29,8 +32,7 @@ body {
     max-width: 900px;
     padding: 30px;
     background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+
 }
 
 h2 {

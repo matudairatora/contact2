@@ -28,6 +28,17 @@
   <div class="login-form__heading">
     <h2>Login</h2>
   </div>
+  <div>
+            @if ($errors->any())
+            <div class="todo__alert--danger">
+            <ul>
+            @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @endforeach
+            </ul>
+            </div>
+            @endif
+        </div>
   <form class="form" action="/login" method="post" >
        @csrf
     <div class="form__group">

@@ -65,7 +65,8 @@
 .form__input input[type="text"],
 .form__input input[type="email"],
 .form__input select,
-.form__input textarea {
+.form__input textarea 
+{
     width: 100%;
     padding: 2px;
     border: 1px solid #ddd;
@@ -74,7 +75,9 @@
     box-sizing: border-box;
     font-size: 14px;
 }
-
+.spece{
+    margin-left: 10px;
+}
 .form__input textarea {
     resize: none;
     height: 100px;
@@ -89,18 +92,23 @@
     display: flex;
 }
 
-.spece {
-    margin-left: 10px;
+.form__input--tel .hyphen {
+    align-self: center;
+    margin: 0 5px;
+    width: auto;
+    height: auto;
+    white-space: nowrap;
 }
 
-.form__input--tel {
+.form__input--tel
+{
     display: flex;
     height: 30px;
 }
 
 /* 電話番号フィールドの調整 */
 .form__input--tel input {
-    width: calc(20% - 7px);
+    width: calc(30% - 7px);
 }
 
 /* ラジオボタンのスタイル調整 */

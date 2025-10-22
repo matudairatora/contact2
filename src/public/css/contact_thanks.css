@@ -1,46 +1,47 @@
+/* 画面全体を使うコンテナ: 要素を画面中央に配置し、背景色を設定 */
 .thank-container {
-    /* 画面全体を使うためにbody/main/htmlに対して全画面配置 */
     width: 100vw;
     height: 100vh;
     position: fixed;
+    /* 画面全体を覆う */
     top: 0;
     left: 0;
     display: flex;
     justify-content: center;
-    /* 中央寄せ */
     align-items: center;
-    /* 垂直方向中央寄せ */
     background-color: #f7f5f2;
-    /* bodyの背景色 を継承 */
+    /* 画像の背景色 */
     overflow: hidden;
     z-index: 100;
-    /* 他の要素の上に確実に表示 */
 }
 
 /* 大きな透かし文字のスタイル */
 .thank-text {
     position: absolute;
     font-size: 200px;
-    color: #f5f5f2;
-    /* 画像に見られる非常に薄い色（背景色に近づける） */
+    /* 画像の透かし文字の色。背景色(#f7f5f2)に非常に近く、わずかに濃い色で透かしを表現 */
+    color: #e3e0d8;
     font-weight: bold;
     letter-spacing: 5px;
     z-index: 0;
-    /* 背景として配置 */
+    /* 背景として最も奥に配置 */
 
-    /* 画面全体で中央に配置 */
+    /* 画面の絶対中央に配置 */
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     pointer-events: none;
-    /* クリックを無効化 */
+    /* マウスイベントを無効化 */
+
+    /* 画像のフォントに合わせて調整 */
+    font-family: serif;
 }
 
 /* メッセージとボタンのコンテナ */
 .message-box {
     text-align: center;
     z-index: 10;
-    /* 手前に配置 */
+    /* 透かし文字より手前に配置 */
     position: relative;
 }
 

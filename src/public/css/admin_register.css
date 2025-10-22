@@ -19,6 +19,8 @@ body {
     padding: 20px 40px;
     background-color: #fff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    border-bottom: 1px solid #000000;
+        padding: 10px;
 }
 
 .header__title {

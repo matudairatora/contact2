@@ -31,6 +31,15 @@
   <div class="register-form__heading">
     <h2>Register</h2>
   </div>
+  @if ($errors->any())
+            <div class="todo__alert--danger">
+            <ul>
+            @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @endforeach
+            </ul>
+            </div>
+            @endif
   <form class="form" action="/register" method="post" >
     @csrf
     <div class="form__group">

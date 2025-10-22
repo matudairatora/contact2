@@ -37,7 +37,7 @@
 
                     <div class="search-form__group">
                         {{-- キーワード検索 (お名前/メールアドレス) --}}
-                        <input type="text" name="keyword" id="keyword" class="search-input" value="{{ request('keyword') }}">
+                        <input type="text" name="keyword" id="keyword" placeholder="名前やメールアドレスを入力してください" class="search-input" value="{{ request('keyword') }}">
                     </div>
                     
                     <div class="search-form__group">
@@ -140,8 +140,9 @@
 
                 <div class="modal-overlay">
                     <div class="modal-content">
-                        {{-- 閉じるボタン（チェックボックスをOFFにするラベル） --}}
-                        <label for="modal-toggle-{{ $contact->id }}" class="modal-close">×</label>
+                        <form action="/admin" method="get">                        
+                           <button type="submit" class="return-button">×</button>
+                        </form>
 
                         <h3 class="modal-title">詳細情報 (ID: {{ $contact->id }})</h3>
                         <table class="modal-detail-table">

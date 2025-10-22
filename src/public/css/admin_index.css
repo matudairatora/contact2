@@ -18,9 +18,11 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 20px 40px;
-    background-color: #fff;
+
     border-bottom: 1px solid #ddd;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    border-bottom: 1px solid #000000;
+    padding: 10px;
 }
 
 .header__title {
@@ -31,6 +33,13 @@ body {
 
 .header__logout {
     display: inline-block;
+    text-decoration: none;
+    color: #000;
+    font-size: 16px;
+    padding: 8px 15px;
+    border: 1px solid #000;
+    border-radius: 5px;
+    transition: background-color 0.3s;
 }
 
 .logout-button {
@@ -127,8 +136,9 @@ body {
 /* 検索パネル (Search Panel) */
 /* ------------------------------------- */
 .search-panel {
+    display: flex;
     background-color: #fff;
-    padding: 30px 40px;
+    padding: 10px 20px;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     margin-bottom: 40px;
@@ -136,37 +146,10 @@ body {
 
 .search-form {
     display: grid;
-    /* 1. お名前/性別/種類  2. 日付範囲  3. ボタン */
-    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-columns: auto auto auto auto auto ;
     gap: 25px 30px;
 }
 
-.search-panel {
-
-
-    gap: 30px;
-    align-items: center;
-    margin-bottom: 10px;
-}
-
-/* 最初の行全体を占めるグループ */
-
-
-.search-form__group {
-    display: flex;
-    align-items: center;
-    /* お名前検索フィールドを画像のように幅広にする */
-    flex-basis: 50%;
-    min-width: 250px;
-}
-
-.search-form__group:nth-child(2),
-/* 性別 */
-.search-form__group:nth-child(3) {
-    /* 種類 */
-    flex-basis: 25%;
-    min-width: 150px;
-}
 
 .search-label {
     font-weight: bold;
@@ -177,12 +160,15 @@ body {
     min-width: 90px;
 }
 
+.search-input {
+    width: 300px;
+}
+
 .search-input,
 .search-form__select {
     padding: 10px 12px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    flex-grow: 1;
     box-sizing: border-box;
     font-size: 14px;
     color: #333;
@@ -192,20 +178,13 @@ body {
 }
 
 .search-form__select {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23333' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 10px center;
     background-size: 10px;
     padding-right: 30px;
     cursor: pointer;
 }
 
 
-/* 日付範囲のグループ */
-.search-form__date-range {
 
-    align-items: center;
-}
 
 .search-input--date {
     padding: 10px 12px;
@@ -227,18 +206,12 @@ body {
 
 /* 検索ボタンとリセットボタン */
 .search-form__actions {
-    grid-column: 2 / -1;
-    /* 2列目から最後まで */
-    display: flex;
-    justify-content: flex-end;
-    /* リセットボタンを右端に寄せる */
-    gap: 15px;
+     gap: 15px;
     align-items: center;
 }
 
 .search-button {
     padding: 10px 30px;
-    border: none;
     border-radius: 4px;
     font-weight: bold;
     cursor: pointer;
@@ -256,13 +229,14 @@ body {
 .reset-button {
     /* リセットは a タグとして扱うため、スタイルを調整 */
     padding: 10px 30px;
-    background: none;
-    border: none;
-    color: #888;
+    border-radius: 4px;
+    font-weight: bold;
     cursor: pointer;
+    transition: background-color 0.2s;
     font-size: 16px;
-    text-decoration: underline;
-    transition: color 0.2s;
+    background-color: #7e7e7e;
+    color: #fff;
+    min-width: 120px;
 }
 
 .reset-button:hover {
@@ -500,7 +474,7 @@ body {
     transform: translateY(0);
 }
 
-.modal-close {
+.return-button {
     position: absolute;
     top: 15px;
     right: 25px;

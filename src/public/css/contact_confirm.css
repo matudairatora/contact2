@@ -30,13 +30,13 @@
     /* ラベルの幅を指定 */
     background-color: #f5eee8;
     /* 画像に近い薄い茶色/ベージュの背景色 */
-    padding: 15px 20px;
+    padding: 15px 10px 15px 15px;
     font-size: 14px;
     font-weight: bold;
     color: #444;
     text-align: left;
     /* テキストを左寄せ */
-    vertical-align: top;
+    vertical-align: middle;
     /* 内容が長い場合に上端に揃える */
 }
 
@@ -44,12 +44,12 @@
 .confirm-value {
     width: 70%;
     /* 値の幅を指定 */
-    padding: 15px 20px;
+    padding: 15px 10px 15px 15px;
     font-size: 14px;
     background-color: #fff;
-    white-space: pre-wrap;
 
     text-align: left;
+    vertical-align: middle;
 }
 
 
