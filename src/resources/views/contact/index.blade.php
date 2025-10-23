@@ -7,19 +7,8 @@
 
 @section('content')
 <div class="container">
-    {{-- エラー表示 --}}
-        <div>
-            @if ($errors->any())
-            <div class="todo__alert--danger">
-            <ul>
-            @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-            @endforeach
-            </ul>
-            </div>
-            @endif
-        </div>
-    <h2>Contact</h2>
+    
+    <h2 class=h2>Contact</h2>
     
 
     <form method="post" action="/confirm"> 
@@ -38,6 +27,23 @@
                 <div class=spece> </div>
                 <input type="text" name="first_name" placeholder="例: 太郎" value="{{ old('first_name') }}" >
                 </div>
+                
+                   @if ($errors->has('last_name'))
+                   <div class="form__error">
+                    @error('last_name')
+                    {{ $message }}
+                    @enderror
+                    </div>
+                    @endif
+                    
+                    @if ($errors->has('first_name'))
+                    <div class="form__error">
+                    @error('first_name')
+                    {{ $message }}
+                    @enderror
+                    </div>
+                    @endif
+                    
             </div>
             </td>
         
@@ -57,6 +63,13 @@
                 <label><input type="radio" name="gender" value="1">男性</label>
                 <label><input type="radio" name="gender" value="2">女性</label>
                 <label><input type="radio" name="gender" value="3">その他</label>
+                @if ($errors->has('gender'))
+                   <div class="form__error">
+                    @error('gender')
+                    {{ $message }}
+                    @enderror
+                    </div>
+                    @endif
             </div>
             </td>
         
@@ -73,7 +86,14 @@
             </th>
             <td class="confirm-value">
             <div class="form__input">
-                <input type="email" name="email" placeholder="例: test@example.com" value="{{ old('email') }}" >
+                <input name="email" placeholder="例: test@example.com" value="{{ old('email') }}" >
+                @if ($errors->has('email'))
+                   <div class="form__error">
+                    @error('email')
+                    {{ $message }}
+                    @enderror
+                    </div>
+                    @endif
             </div>
             </td>
         
@@ -96,9 +116,16 @@
                 <input type="text" name="tel_part2" placeholder="1234" value="{{ old('tel_part2') }}">
                 <span class="hyphen">-</span>
                 <input type="text" name="tel_part3" placeholder="5678" value="{{ old('tel_part3') }}">
-               
+              
                 </div>
             </div>
+             @if ($errors->has('tel_part1'))
+                   <div class="form__error">
+                    @error('tel_part1')
+                    {{ $message }}
+                    @enderror
+                    </div>
+                    @endif
             </td>
         
         </tr> 
@@ -114,6 +141,13 @@
             <td class="confirm-value">
             <div class="form__input">
                 <input type="text" name="address" placeholder="例: 東京都渋谷区千駄ヶ谷1-2-3" value="{{ old('address') }}">
+                @if ($errors->has('address'))
+                   <div class="form__error">
+                    @error('address')
+                    {{ $message }}
+                    @enderror
+                    </div>
+                    @endif
             </div>
             </td>
         
@@ -151,6 +185,13 @@
                     <option value="ショップへのお問い合わせ">ショップへのお問い合わせ</option>
                     <option value="その他">その他</option>
                 </select>
+                @if ($errors->has('content'))
+                   <div class="form__error">
+                    @error('content')
+                    {{ $message }}
+                    @enderror
+                    </div>
+                    @endif
             </div>
             </td>
         
@@ -165,11 +206,18 @@
             <td class="confirm-value">
             <div class="form__input">
                 <textarea name="detail" rows="5" placeholder="お問い合わせ内容をご記載ください" value="{{ old('detail') }}"></textarea>
+                @if ($errors->has('detail'))
+                   <div class="form__error">
+                    @error('detail')
+                    {{ $message }}
+                    @enderror
+                    </div>
+                    @endif
             </div>
             </td>
         
         </tr>
-        {{-- エラー表示 --}}
+        
         
         
         </table>

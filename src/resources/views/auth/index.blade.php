@@ -17,7 +17,7 @@
         <h1 class="header__title">FashionablyLate</h1>
 
         {{-- ログアウトボタン (Fortifyのログアウトルートは POST /logout です) --}}
-        <form method="POST" action="/logout" class="header__logout">
+        <form method="post" action="/logout" class="header__logout">
             @csrf
             <button type="submit" class="logout-button">ログアウト</button>
         </form>
@@ -73,11 +73,19 @@
                     <div class="search-form__actions search-form__group">
                         {{-- 検索ボタン --}}
                         <button class="search-button" type="submit">検索</button>
-                        
+                    
                         {{-- リセットボタン (クエリパラメータをクリアして同じページにGETリクエスト) --}}
-                        <a href="/admin" class="reset-button search-form__group">リセット</a>
+                        
                     </div>
                 </form>
+                    <div>
+                    <form method="GET" action="/admin" class="reset-form">    
+                    <button type="submit" class="reset-button">
+                     リセット
+                    </button>
+                    </form>
+                    </div>
+                
             </div>
              {{-- =================================== --}}
              {{-- 2. 検索結果一覧とページネーション --}}

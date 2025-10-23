@@ -14,9 +14,7 @@ body {
 }
 
 .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    position: relative;
     padding: 20px 40px;
 
     border-bottom: 1px solid #ddd;
@@ -26,14 +24,17 @@ body {
 }
 
 .header__title {
+    text-align: center;
     font-size: 24px;
     font-weight: bold;
     color: #000;
 }
 
 .header__logout {
-    display: inline-block;
-    text-decoration: none;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
     color: #000;
     font-size: 16px;
     padding: 8px 15px;
@@ -145,8 +146,7 @@ body {
 }
 
 .search-form {
-    display: grid;
-    grid-template-columns: auto auto auto auto auto ;
+    display: flex;
     gap: 25px 30px;
 }
 
@@ -221,26 +221,26 @@ body {
     color: #fff;
     min-width: 120px;
 }
+.reset-button{
+    padding: 10px 30px;
+        border-radius: 4px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.2s;
+        font-size: 16px;
+        background-color: #000;
+        color: #fff;
+        min-width: 120px;
+}
 
 .search-button:hover {
     background-color: #444;
 }
 
-.reset-button {
-    /* リセットは a タグとして扱うため、スタイルを調整 */
-    padding: 10px 30px;
-    border-radius: 4px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.2s;
-    font-size: 16px;
-    background-color: #7e7e7e;
-    color: #fff;
-    min-width: 120px;
-}
+
 
 .reset-button:hover {
-    color: #555;
+    background-color: #444;
 }
 
 .export-button {

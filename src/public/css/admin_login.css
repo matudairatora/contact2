@@ -1,7 +1,5 @@
-
-
 body {
-    background-color: #f7f7f7;
+    background-color: #d8d2cd;
     font-family: Arial, sans-serif;
     color: #333;
     line-height: 1.6;
@@ -9,33 +7,37 @@ body {
 
 /* ヘッダー */
 .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    position: relative;
     padding: 20px 40px;
-    border-bottom: 1px solid #000000;
-        padding: 10px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    background-color: #ffffff;
 }
 
 .header__title {
+    text-align: center;
     font-size: 24px;
     font-weight: bold;
     color: #000;
-   
+
 }
 
 .header__link {
-    text-decoration: none;
+
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
     color: #000;
     font-size: 16px;
     padding: 8px 15px;
     border: 1px solid #000;
     border-radius: 5px;
-    transition: background-color 0.3s;
+
 }
 
 .header__link:hover {
-    background-color: #eee;
+    background-color: #eeeeee;
 }
 
 /* コンテンツ全体を中央に配置するコンテナ */
@@ -70,8 +72,6 @@ body {
     /* ラベルと入力欄を垂直方向中央に揃える */
     align-items: center;
     padding: 15px 0;
-    border-top: 1px solid #ddd;
-    /* エラーメッセージが下の行で表示されるため、margin-bottomは付けない */
 }
 
 /* 最後のグループの下線 */
@@ -103,8 +103,6 @@ body {
 .form__input--text input {
     width: 100%;
     padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
     box-sizing: border-box;
 }
 

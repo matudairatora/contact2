@@ -1,19 +1,9 @@
-
-
-
 .confirm-table {
     border-collapse: collapse;
     /* セルの境界線を結合 */
     width: 100%;
-    border: 1px solid #ddd;
-    /* 外枠の線（オプション） */
 
-}
 
-/* テーブルの行 */
-.confirm-table tr {
-    border-bottom: 1px solid #ddd;
-    /* 行の区切り線 */
 }
 
 
@@ -21,7 +11,7 @@
 .confirm-label {
     width: 30%;
     /* ラベルの幅を指定 */
-    background-color: #f5eee8;
+
     /* 画像に近い薄い茶色/ベージュの背景色 */
     font-size: 14px;
     font-weight: bold;
@@ -36,16 +26,19 @@
     padding: 1px 10px;
     font-size: 14px;
     background-color: #fff;
-    white-space: pre-wrap;
+   height: 100px;
 
 }
 
 
-
-
-.required{
+.h2{
+    color: #5f5851;
+}
+.required {
     color: #F00;
+   
 }
+
 .form__label {
     width: 30%;
     min-width: 120px;
@@ -65,8 +58,7 @@
 .form__input input[type="text"],
 .form__input input[type="email"],
 .form__input select,
-.form__input textarea 
-{
+.form__input textarea {
     width: 100%;
     padding: 2px;
     border: 1px solid #ddd;
@@ -75,9 +67,11 @@
     box-sizing: border-box;
     font-size: 14px;
 }
-.spece{
+
+.spece {
     margin-left: 10px;
 }
+
 .form__input textarea {
     resize: none;
     height: 100px;
@@ -100,8 +94,7 @@
     white-space: nowrap;
 }
 
-.form__input--tel
-{
+.form__input--tel {
     display: flex;
     height: 30px;
 }
@@ -123,7 +116,7 @@
 }
 
 .form__button button {
-    background-color: #4a4a4a;
+    background-color: #6a5344;
     color: #fff;
     border: none;
     padding: 12px 40px;
@@ -144,4 +137,9 @@
     margin-top: 5px;
     margin-left: 30%;
     padding-left: 20px;
+}
+
+.form__error {
+    background-color: rgb(255, 87, 87);
+    text-align: left;
 }

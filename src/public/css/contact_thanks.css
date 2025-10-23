@@ -26,10 +26,8 @@
     z-index: 0;
     /* 背景として最も奥に配置 */
 
-    /* 画面の絶対中央に配置 */
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+
+
     pointer-events: none;
     /* マウスイベントを無効化 */
 
