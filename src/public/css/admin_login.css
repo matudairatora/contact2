@@ -31,8 +31,9 @@ body {
     color: #000;
     font-size: 16px;
     padding: 8px 15px;
-    border: 1px solid #000;
-    border-radius: 5px;
+    border: 1px solid #474747;
+    border-radius: 2px;
+    background-color: #d8d6d6;
 
 }
 

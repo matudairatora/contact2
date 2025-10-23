@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FashionablyLate | Admin</title>
 
-    {{-- CSSの読み込み --}}
+   
     
     <link rel="stylesheet" href="{{ asset('css/admin_index.css') }}">
 
@@ -19,7 +19,7 @@
         {{-- ログアウトボタン (Fortifyのログアウトルートは POST /logout です) --}}
         <form method="post" action="/logout" class="header__logout">
             @csrf
-            <button type="submit" class="logout-button">ログアウト</button>
+            <button type="submit" class="logout-button">logout</button>
         </form>
     </header>
 
@@ -34,7 +34,7 @@
             <div class="search-panel">
                 {{-- GETメソッドで検索を実行。リセットボタンもこのフォームの一部として扱う --}}
                 <form method="GET" action="/admin" class="search-form" id="search-form">
-
+                    @csrf
                     <div class="search-form__group">
                         {{-- キーワード検索 (お名前/メールアドレス) --}}
                         <input type="text" name="keyword" id="keyword" placeholder="名前やメールアドレスを入力してください" class="search-input" value="{{ request('keyword') }}">
@@ -70,21 +70,22 @@
                         <input type="date" name="date_end" class="search-input--date" value="{{ request('date_end') }}">
                     </div>
 
-                    <div class="search-form__actions search-form__group">
+                    <div class="search-form__group search-form__actions ">
                         {{-- 検索ボタン --}}
                         <button class="search-button" type="submit">検索</button>
                     
                         {{-- リセットボタン (クエリパラメータをクリアして同じページにGETリクエスト) --}}
                         
+                    </div>       
+                   </form>
+                   <div class="search-form__group search-form__actions">
+                        <form method="GET" action="/admin" class="reset-form">    
+                        <button type="submit" class="reset-button">
+                        リセット
+                        </button>
+                        </form>
                     </div>
-                </form>
-                    <div>
-                    <form method="GET" action="/admin" class="reset-form">    
-                    <button type="submit" class="reset-button">
-                     リセット
-                    </button>
-                    </form>
-                    </div>
+                    
                 
             </div>
              {{-- =================================== --}}
@@ -129,7 +130,7 @@
                             <td>{{ $contact->category->content ?? '不明' }}</td>
                             <td>
                                 {{-- 詳細ボタン（モーダルトリガー） --}}
-                                <label for="modal-toggle-{{ $contact->id }}" class="detail-button">詳細</label>
+                                <a href="#modal-toggle-{{ $contact->id }}" class="detail-button">詳細</a>
                             </td>
                            
                         </tr>
@@ -143,18 +144,15 @@
             {{-- =================================== --}}
 
             @foreach ($contacts as $contact)
-                {{-- ★トリックの核：非表示のチェックボックス --}}
-                <input type="checkbox" id="modal-toggle-{{ $contact->id }}" class="modal-toggle">
-
-                <div class="modal-overlay">
-                    <div class="modal-content">
-                        <form action="/admin" method="get">                        
-                           <button type="submit" class="return-button">×</button>
-                        </form>
-
-                        <h3 class="modal-title">詳細情報 (ID: {{ $contact->id }})</h3>
+            <div class="modal-wrapper" id="modal-toggle-{{ $contact->id }}">
+            
+                
+                    <a href="#!" class="modal-overlay"></a>
+                <div class="modal-window">
+                    <a href="#!" class="modal-close">&times;</a>
+                    <div class="modal-content">    
+                        <h1 class="modal-title"></h1>
                         <table class="modal-detail-table">
-                            <tr><th>ID</th><td>{{ $contact->id }}</td></tr>
                             <tr><th>お名前</th><td>{{ $contact->last_name }} {{ $contact->first_name }}</td></tr>
                             <tr>
                                 <th>性別</th>
@@ -173,19 +171,20 @@
                             {{-- お問い合わせ内容が長文の場合を考慮し、改行やスペースを保持して表示するCSSクラスを適用 --}}
                             <tr><th>お問い合わせ内容</th><td class="modal-detail-text">{{ $contact->detail }}</td></tr> 
                              {{-- 削除ボタン --}}
-                               <td> <form action="/admin/delete" method="POST" class="delete-form" onsubmit="return confirm('本当に削除しますか？');">
+                               
+                        </table>
+                         <form action="/admin/delete" method="POST" class="delete-form" onsubmit="return confirm('本当に削除しますか？');">
                                     @csrf
                                     {{-- DELETEメソッドは利用していないため POST で実装 --}}
                                     {{-- @method('DELETE') --}}
                                     <input type="hidden" name="id" value="{{ $contact->id }}">
                                     <button type="submit" class="delete-button">削除</button>
                                 </form>
-                                </td>
-                        </table>
                     </div>
-                    {{-- モーダルの外側をクリックで閉じれるように、オーバーレイ全体を閉じるラベルにする --}}
-                    <label for="modal-toggle-{{ $contact->id }}" class="modal-overlay-close"></label>
+                    <a href="#!" class="modal-close"><i class="far fa-times-circle"></i></a>
                 </div>
+            </div>       
+                
             @endforeach
         </div>
     </main>

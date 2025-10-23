@@ -38,9 +38,9 @@ body {
     color: #000;
     font-size: 16px;
     padding: 8px 15px;
-    border: 1px solid #000;
-    border-radius: 5px;
-    transition: background-color 0.3s;
+    border: 1px solid #474747;
+    border-radius: 2px;
+    background-color: #d8d6d6;
 }
 
 .logout-button {
@@ -138,11 +138,10 @@ body {
 /* ------------------------------------- */
 .search-panel {
     display: flex;
-    background-color: #fff;
     padding: 10px 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
     margin-bottom: 40px;
+    width: 100%;
 }
 
 .search-form {
@@ -154,15 +153,12 @@ body {
 .search-label {
     font-weight: bold;
     margin-right: 15px;
-    white-space: nowrap;
     font-size: 16px;
     color: #555;
-    min-width: 90px;
+
 }
 
-.search-input {
-    width: 300px;
-}
+
 
 .search-input,
 .search-form__select {
@@ -191,7 +187,6 @@ body {
     border: 1px solid #ccc;
     border-radius: 4px;
     flex-grow: 1;
-    min-width: 120px;
     box-sizing: border-box;
     font-size: 14px;
     font-family: inherit;
@@ -205,32 +200,31 @@ body {
 }
 
 /* 検索ボタンとリセットボタン */
-.search-form__actions {
-     gap: 15px;
-    align-items: center;
-}
+
 
 .search-button {
-    padding: 10px 30px;
+    padding: 10px 12px;
     border-radius: 4px;
     font-weight: bold;
     cursor: pointer;
-    transition: background-color 0.2s;
     font-size: 16px;
-    background-color: #000;
+    background-color: #857161;
     color: #fff;
     min-width: 120px;
+    border: none;
 }
-.reset-button{
-    padding: 10px 30px;
-        border-radius: 4px;
-        font-weight: bold;
-        cursor: pointer;
-        transition: background-color 0.2s;
-        font-size: 16px;
-        background-color: #000;
-        color: #fff;
-        min-width: 120px;
+
+.reset-button {
+    margin-left: 30px;
+    padding: 10px 12px;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 16px;
+    background-color: #e0bfa5;
+    color: #fff;
+    min-width: 120px;
+    border: none;
 }
 
 .search-button:hover {
@@ -357,7 +351,7 @@ body {
 .contact-table th,
 .contact-table td {
     padding: 12px 15px;
-    border: 1px solid #eee;
+    border-bottom: 1px solid #eee;
     text-align: left;
     font-size: 14px;
     white-space: nowrap;
@@ -369,9 +363,9 @@ body {
 }
 
 .contact-table th {
-    background-color: #f8f8f8;
+    background-color: #857161;
     font-weight: bold;
-    color: #555;
+    color: #ffffff;
 }
 
 .contact-table td {
@@ -384,8 +378,7 @@ body {
 }
 
 /* ボタンのスタイル */
-.detail-button,
-.delete-button {
+.detail-button {
     padding: 6px 18px;
     border-radius: 4px;
     font-size: 14px;
@@ -398,18 +391,13 @@ body {
 }
 
 .detail-button {
-    background-color: #000;
-    color: #fff;
+    background-color: #f8f8f8;
+    color: #bab8b8;
     border: none;
-    min-width: 80px;
+    min-width: 50px;
 }
 
-.delete-button {
-    background-color: #fff;
-    color: #000;
-    border: 1px solid #000;
-    min-width: 80px;
-}
+
 
 .detail-button:hover,
 .delete-button:hover {
@@ -420,65 +408,173 @@ body {
     display: inline;
 }
 
-/* ------------------------------------- */
-/* モーダル (Modal) */
-/* ------------------------------------- */
+.delete-button {
 
-/* チェックボックスを非表示にする */
-.modal-toggle {
-    display: none;
+    padding: 6px 18px;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    text-align: center;
+    display: inline-block;
+    color: #ccc;
+    background-color: #f53030;
+    border: none;
 }
 
-/* モーダルオーバーレイ（背景の暗転部分） */
-.modal-overlay {
+.modal-detail-table {
+    text-align: left;
+    
+}
+
+.modal-detail-table td{
+    border-spacing: 100px 5px 0px 0px;
+}
+
+/* ------------------------------------- */
+/* モーダル */
+/* ------------------------------------- */
+.modal-wrapper {
+    z-index: 999;
     position: fixed;
     top: 0;
+    right: 0;
+    bottom: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    padding: 40px 10px;
+    text-align: center;
+}
+
+.modal-button {
+    color: #4f96f6;
+    background-color: #eeeeee;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: block;
+    margin-top: 40px;
+    margin-bottom: 1px;
+    padding: 12px 2px;
+    max-width: 300px;
+    text-decoration: none;
+}
+
+.modal-button:active {
+    /*ボタンを押したとき*/
+    -webkit-transform: translateY(2px);
+    transform: translateY(2px);
+    /*下に動く*/
+
+}
+
+/*アイコンを表示*/
+.modal-button:after {
+    font-family: "Font Awesome 5 Free";
+    content: "\f2d0";
+    padding-left: 8px;
+}
+
+/*ラベルホバー時*/
+.modal-button:hover {
+    color: #FFFFFF;
+    background-color: #4f96f6;
+    transition: .6s;
+}
+
+.modal-wrapper:not(:target) {
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.3s, visibility 0.3s;
-    z-index: 1000;
+    transition: opacity .3s, visibility .3s;
 }
 
-/* チェックボックスがチェックされたらモーダルを表示 */
-.modal-toggle:checked~.modal-overlay {
+.modal-wrapper:target {
     opacity: 1;
     visibility: visible;
+    transition: opacity .4s, visibility .4s;
 }
 
-/* モーダルコンテンツ（情報表示部分） */
-.modal-content {
-    background: #fff;
-    padding: 40px;
-    border-radius: 8px;
-    width: 90%;
-    max-width: 600px;
+.modal-wrapper::after {
+    display: inline-block;
+    height: 100%;
+    margin-left: -.05em;
+    vertical-align: middle;
+    content: ""
+}
+
+.modal-wrapper .modal-window {
+    box-sizing: border-box;
+    display: inline-block;
+    z-index: 20;
     position: relative;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    z-index: 50;
-
-    /* アニメーションの初期位置（少し上に） */
-    transform: translateY(-50px);
-    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    /* 弾むようなアニメーション */
+    width: 70%;
+    max-width: 600px;
+    padding: 10px 30px 25px;
+    border-radius: 2px;
+    background: #fff;
+    box-shadow: 0 0 30px rgba(0, 0, 0, .6);
+    vertical-align: middle
 }
 
-/* チェックボックスがチェックされたらコンテンツを中央に戻す */
-.modal-toggle:checked~.modal-overlay .modal-content {
-    transform: translateY(0);
+.modal-wrapper .modal-window .modal-content {
+    max-height: 80vh;
+    overflow-y: auto;
 }
 
-.return-button {
+.modal_title {
+    font-size: 1.5em;
+    position: relative;
+    overflow: hidden;
+    padding: 0;
+}
+
+.modal_title::before,
+.modal_title::after {
+    content: "";
     position: absolute;
-    top: 15px;
-    right: 25px;
-    font-size: 35px;
-    font-weight: 300;
-    z-index: 60;
+    bottom: 0;
+}
+
+/* h2 プライマリカラー*/
+.modal_title:before {
+    border-bottom: 4px solid #6bb6ff;
+    width: 100%;
+}
+
+/* h2 セカンダリカラー*/
+.modal_title:after {
+    border-bottom: 4px solid #c8e4ff;
+    width: 100%;
+}
+
+.modal-content p {
+    margin: 10px 0 0 0;
+}
+
+.modal-overlay {
+    z-index: 10;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    
+}
+
+.modal-wrapper .modal-close {
+    z-index: 20;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 35px;
+    color: #95979c !important;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 35px;
+    text-align: center;
+    text-decoration: none;
+    text-indent: 0
+}
+
+.modal-wrapper .modal-close:hover {
+    color: #2b2e38 !important
 }
