@@ -47,19 +47,22 @@
     font-size: 14px;
 }
 
-.form__input {
-    width: 70%;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-}
+
 
 /* 入力フィールドの基本スタイル */
 .form__input input[type="text"],
-.form__input input[type="email"],
 .form__input select,
 .form__input textarea {
     width: 100%;
+    padding: 2px;
+    border: 1px solid #ddd;
+    background-color: #f7f7f7;
+    border-radius: 3px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+.form__input-email{
+width: 100%;
     padding: 2px;
     border: 1px solid #ddd;
     background-color: #f7f7f7;

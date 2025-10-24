@@ -60,9 +60,9 @@
             <td class="confirm-value">
             <div class="form__input form__input--radio" value="{{ old('gender') }}">
                 {{-- 画像に合わせてラジオボタンの並び順と初期選択を設定 --}}
-                <label><input type="radio" name="gender" value="1">男性</label>
-                <label><input type="radio" name="gender" value="2">女性</label>
-                <label><input type="radio" name="gender" value="3">その他</label>
+                <label><input type="radio" name="gender" value="1" {{old('gender') == '1' ? 'checked' : ''}}>男性</label>
+                <label><input type="radio" name="gender" value="2" {{old('gender') == '2' ? 'checked' : ''}}>女性</label>
+                <label><input type="radio" name="gender" value="3" {{old('gender') == '3' ? 'checked' : ''}}>その他</label>
                 @if ($errors->has('gender'))
                    <div class="form__error">
                     @error('gender')
@@ -86,7 +86,7 @@
             </th>
             <td class="confirm-value">
             <div class="form__input">
-                <input name="email" placeholder="例: test@example.com" value="{{ old('email') }}" >
+                <input name="email" placeholder="例: test@example.com" class="form__input-email" value="{{ old('email') }}" >
                 @if ($errors->has('email'))
                    <div class="form__error">
                     @error('email')
@@ -122,6 +122,18 @@
              @if ($errors->has('tel_part1'))
                    <div class="form__error">
                     @error('tel_part1')
+                    {{ $message }}
+                    @enderror
+                    </div>
+                    @elseif($errors->has('tel_part2'))
+                    <div class="form__error">
+                    @error('tel_part2')
+                    {{ $message }}
+                    @enderror
+                    </div>
+                    @elseif($errors->has('tel_part3'))
+                    <div class="form__error">
+                    @error('tel_part3')
                     {{ $message }}
                     @enderror
                     </div>
@@ -177,13 +189,13 @@
             </th>
             <td class="confirm-value">
             <div class="form__input">
-                <select name="content" value="{{ old('content') }}" >
+                <select name="content"  >
                     <option value="" disabled selected>選択してください</option>
-                    <option value="商品のお届けについて">商品のお届けについて</option>
-                    <option value="商品の交換について">商品の交換について</option>
-                    <option value="商品トラブル">商品トラブル</option>
-                    <option value="ショップへのお問い合わせ">ショップへのお問い合わせ</option>
-                    <option value="その他">その他</option>
+                    <option value="商品のお届けについて" {{old('content') == '商品のお届けについて' ? 'selected' : ''}}>商品のお届けについて</option>
+                    <option value="商品の交換について"{{old('content') == '商品の交換について' ? 'selected' : ''}}>商品の交換について</option>
+                    <option value="商品トラブル" {{old('content') == '商品トラブル' ? 'selected' : ''}}>商品トラブル</option>
+                    <option value="ショップへのお問い合わせ" {{old('content') == 'ショップへのお問い合わせ' ? 'selected' : ''}}>ショップへのお問い合わせ</option>
+                    <option value="その他" {{old('content') == 'その他' ? 'selected' : ''}}>その他</option>
                 </select>
                 @if ($errors->has('content'))
                    <div class="form__error">
@@ -205,7 +217,7 @@
             </th>
             <td class="confirm-value">
             <div class="form__input">
-                <textarea name="detail" rows="5" placeholder="お問い合わせ内容をご記載ください" value="{{ old('detail') }}"></textarea>
+                <textarea name="detail" rows="5" placeholder="お問い合わせ内容をご記載ください" >{{ old('detail') }}</textarea>
                 @if ($errors->has('detail'))
                    <div class="form__error">
                     @error('detail')

@@ -28,12 +28,12 @@
 .confirm-label {
     width: 30%;
     /* ラベルの幅を指定 */
-    background-color: #f5eee8;
+    background-color: #9f8f8f;
     /* 画像に近い薄い茶色/ベージュの背景色 */
     padding: 15px 10px 15px 15px;
     font-size: 14px;
-    font-weight: bold;
-    color: #444;
+    font-weight: normal;
+    color: #fdfdfd;
     text-align: left;
     /* テキストを左寄せ */
     vertical-align: middle;
