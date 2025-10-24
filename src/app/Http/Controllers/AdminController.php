@@ -10,6 +10,7 @@ use App\Models\User;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Response; 
 use Illuminate\Support\Facades\DB;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class AdminController extends Controller
 {
@@ -17,7 +18,8 @@ class AdminController extends Controller
 {   
     Paginator::useBootstrap();
     // 1. カテゴリーデータを取得 (絞り込み用)
-        $categories = Category::all();
+    
+    $categories = Category::all();
 
         // 2. リクエストから検索・絞り込み条件を取得
         $keyword = $request->input('keyword');
@@ -47,6 +49,9 @@ class AdminController extends Controller
         return view('auth.index', compact('contacts', 'categories'));
     }
     
+    
+
+
     // 削除処理のメソッド (web.php にルートを追加する必要あり)
     public function delete(Request $request)
     {
@@ -55,74 +60,43 @@ class AdminController extends Controller
         return back(); 
     }
 
-
-    public function exportCsv(Request $request)
+   public function exportContacts(Request $request)
     {
-        // 1. CSVヘッダー行を定義
-        $csvHeader = [
-            'ID', '氏名', '性別', 'メールアドレス', '電話番号', 
-            '住所', '建物名', 'お問い合わせの種類', '詳細', '登録日時'
-        ];
-        
-        // 2. 検索・絞り込みロジックを再利用
-        // index メソッドと同じロジックでクエリを構築します
-        $contactsQuery = Contact::with('category')
-            ->keywordSearch($request->input('keyword'))
-            ->genderSearch($request->input('gender'))
-            ->categorySearch($request->input('category_id'))
-            ->contentSearch($request->input('content')) 
-            ->dateStartSearch($request->input('date_start'))
-            ->dateEndSearch($request->input('date_end'));
+        // ダウンロード時のファイル名を指定
+        $fileName = 'contacts_' . now()->format('Ymd_His') . '.csv';
+
+        $response = new StreamedResponse(function () {
+            $stream = fopen('php://output', 'w');
             
-        // 3. 構築したクエリから全データを取得
-        $contacts = $contactsQuery->get();
+            // 日本語・Excel対応のため、Shift-JISに変換し、改行コードをCRLFにするフィルターを設定
+            stream_filter_prepend($stream, 'convert.iconv.utf-8/sjis-win');
 
-        // 4. ファイルポインタを開く
-        $callback = function() use ($contacts, $csvHeader)
-        {
-            // PHPのテンポラリファイルを開く
-            $file = fopen('php://output', 'w');
-            
-            // 日本語が文字化けしないように BOM を付ける
-            fwrite($file, "\xEF\xBB\xBF"); 
+            // ヘッダー行 (Contactテーブルのカラムに合わせて修正)
+            $headers = [ '姓','名', '性別','メールアドレス', 'お問い合わせ内容'];
+            fputcsv($stream, $headers);
 
-            // ヘッダー行を書き込む
-            fputcsv($file, $csvHeader);
+            // Contactモデルからデータを1000件ずつ取得して処理 (メモリ効率が良い)
+            Contact::query()->with('category')->chunk(1000, function ($contacts) use ($stream) {
+                foreach ($contacts as $contact) {
+                    $row = [
+                        $contact->last_name,
+                        $contact->first_name,
+                        $contact->gender,
+                        $contact->email,
+                        $contact->category?->content,
+                    ];
+                    fputcsv($stream, $row);
+                }
+            });
 
-            // データ行を書き込む
-            foreach ($contacts as $contact) {
-                // 性別コードをテキストに変換
-                $genderText = match($contact->gender) {
-                    1 => '男性',
-                    2 => '女性',
-                    default => 'その他',
-                };
-                
-                // CSVの1行分の配列を作成
-                fputcsv($file, [
-                    $contact->id,
-                    $contact->last_name . ' ' . $contact->first_name, // 氏名結合
-                    $genderText,
-                    $contact->email,
-                    $contact->tel,
-                    $contact->address,
-                    $contact->building,
-                    $contact->category->content ?? '不明', // カテゴリー名
-                    $contact->detail,
-                    $contact->created_at->format('Y/m/d H:i'), // 登録日時フォーマット
-                ]);
-            }
-            
-            fclose($file);
-        };
-        
-        // 5. ダウンロード用のレスポンスヘッダーを設定
-        $fileName = 'contacts_' . now()->format('YmdHis') . '.csv';
-        
-        return Response::stream($callback, 200, [
-            'Content-Type'        => 'text/csv',
-            'Content-Disposition' => "attachment; filename=\"{$fileName}\"",
-        ]);
+            fclose($stream);
+        });
 
+        // レスポンスヘッダーの設定
+        $response->headers->set('Content-Type', 'text/csv');
+        $response->headers->set('Content-Disposition', 'attachment; filename="' . $fileName . '"');
+
+        return $response;
     }
+    
 }

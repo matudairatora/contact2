@@ -93,11 +93,11 @@
              {{-- =================================== --}}
             <div class="pagination-area"> 
                
-                    
+                    <form action="/export/contact" method="GET">
                     <button id="export-csv-button" class="export-button" >
                     エクスポート
                     </button>
-               
+                    </form>
                 {{ $contacts->links() }} 
             </div>
             
@@ -188,44 +188,6 @@
             @endforeach
         </div>
     </main>
-<script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // CSV出力ボタンの要素を取得
-            const exportButton = document.getElementById('export-csv-button');
-            
-            // 検索フォームの要素を取得 (id="search-form" が必須)
-            const searchForm = document.getElementById('search-form'); 
 
-            if (!exportButton || !searchForm) {
-                // ボタンまたはフォームが見つからなかった場合は、スクリプトを終了
-                console.error("CSVエクスポートボタン (id='export-csv-button') または検索フォーム (id='search-form') が見つかりません。");
-                return;
-            }
-
-            exportButton.addEventListener('click', function() {
-                // CSV出力のベースURLをBladeヘルパーで取得
-                // BladeがPHPとして処理し、URLに変換されます
-                const baseUrl = '{{ route("admin.export") }}'; 
-                
-                // FormDataを使ってフォームの全入力値を取得
-                const formData = new FormData(searchForm);
-                const params = new URLSearchParams();
-                
-                // 取得した値をURLクエリパラメータに変換
-                for (const [key, value] of formData.entries()) {
-                    // CSRFトークンや値が空のフィールドを除外
-                    if (key !== '_token' && value !== null && value !== '') {
-                        params.append(key, value);
-                    }
-                }
-                
-                // 新しいURLを作成 (パラメータがあれば '?' を付ける)
-                const exportUrl = baseUrl + (params.toString() ? '?' + params.toString() : '');
-
-                // ダウンロードを実行
-                window.location.href = exportUrl;
-            });
-        });
-    </script>
 </body>
 </html>

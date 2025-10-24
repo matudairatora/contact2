@@ -30,7 +30,7 @@ Route::post('/thanks', [ContactController::class, 'send']);
 Route::middleware('auth')->group(function () {
      Route::get('/admin', [AdminController::class, 'index']);
      Route::post('/admin/delete', [AdminController::class, 'delete']);
-     Route::get('/admin/export', [AdminController::class, 'exportCsv'])->name('admin.export');
+     Route::get('/export/contact', [AdminController::class, 'exportContacts']);
  });
 
  

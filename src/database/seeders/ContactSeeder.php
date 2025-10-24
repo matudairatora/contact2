@@ -19,8 +19,8 @@ class ContactSeeder extends Seeder
         $categoryMap = Category::pluck('id', 'content')->toArray();
 
         $contactsData = [[
-            'first_name'=>'satou',
-            'last_name'=>'itirou',
+            'last_name'=>'satou',
+            'first_name'=>'itirou',
             'gender'=> 1,
             'email'=>'itirou@gmail.com',
             'tel'=>'07012345678',
@@ -31,8 +31,8 @@ class ContactSeeder extends Seeder
 
         ],
         [
-            'first_name'=>'yamada',
-            'last_name'=>'jirou',
+            'last_name'=>'yamada',
+            'first_name'=>'jirou',
             'gender'=> 1,
             'email'=>'jirou@gmail.com',
             'tel'=>'07012348888',
@@ -43,8 +43,8 @@ class ContactSeeder extends Seeder
 
         ],
         [
-            'first_name'=>'sagawa',
-            'last_name'=>'saburou',
+            'last_name'=>'sagawa',
+            'first_name'=>'saburou',
             'gender'=> 2,
             'email'=>'saburou@gmail.com',
             'tel'=>'07012349999',
@@ -55,8 +55,8 @@ class ContactSeeder extends Seeder
 
         ],
         [
-            'first_name'=>'tanaka',
-            'last_name'=>'yonnko',
+            'last_name'=>'tanaka',
+            'first_name'=>'yonnko',
             'gender'=> 2,
             'email'=>'yonnko@gmail.com',
             'tel'=>'07012346666',
@@ -67,8 +67,8 @@ class ContactSeeder extends Seeder
 
         ],
         [
-            'first_name'=>'satonaka',
-            'last_name'=>'gorou',
+            'last_name'=>'satonaka',
+            'first_name'=>'gorou',
             'gender'=> 3,
             'email'=>'gorou@gmail.com',
             'tel'=>'07012347777',

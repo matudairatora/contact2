@@ -1,5 +1,5 @@
 body {
-    background-color: #d8d2cd;
+    background-color: #f1f1f1;
     font-family: Arial, sans-serif;
     color: #333;
     line-height: 1.6;
@@ -18,7 +18,7 @@ body {
     text-align: center;
     font-size: 24px;
     font-weight: bold;
-    color: #000;
+    color: #7b6e6e;
 
 }
 
@@ -28,12 +28,12 @@ body {
     top: 50%;
     right: 0;
     transform: translateY(-50%);
-    color: #000;
+    color: #c1c1c1;
     font-size: 16px;
     padding: 8px 15px;
-    border: 1px solid #474747;
+    border: 1px solid #c1c1c1;
     border-radius: 2px;
-    background-color: #d8d6d6;
+    background-color: #f1f1f1;
 
 }
 
@@ -58,6 +58,7 @@ body {
     font-weight: bold;
     margin-bottom: 30px;
     text-align: center;
+    color: #7b6e6e;
 }
 
 
@@ -65,12 +66,11 @@ body {
 
 .form {
     margin-bottom: 30px;
-}
+  }
 
 /* ラベルと入力欄の行 (二列レイアウトの基盤) */
 .form__group {
-    display: flex;
-    /* ラベルと入力欄を垂直方向中央に揃える */
+    text-align: center;
     align-items: center;
     padding: 15px 0;
 }
@@ -83,13 +83,15 @@ body {
 
 /* ラベルのエリア */
 .form__group-title {
-    width: 35%;
+    width: 100%;
     /* ラベルの幅を固定 */
-    text-align: left;
-    padding-right: 15px;
+   text-align: left;
+   margin-left: 70px;
+   color: #8f8787;
 }
 
 .form__label--item {
+    
     font-size: 16px;
     font-weight: normal;
 }
@@ -102,9 +104,13 @@ body {
 
 /* テキスト入力欄のスタイル */
 .form__input--text input {
+    margin-left: 70px;
     width: 100%;
     padding: 10px;
     box-sizing: border-box;
+    background-color: #f1f1f1;
+    border: none;
+    color: #7b6e6e;
 }
 
 /* プレースホルダーのスタイル */
@@ -133,7 +139,7 @@ body {
 }
 
 .form__button-submit {
-    background-color: #000;
+    background-color: #715f5f;
     color: #fff;
     border: none;
     padding: 10px 40px;

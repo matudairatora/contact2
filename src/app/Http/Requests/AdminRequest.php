@@ -21,7 +21,7 @@ class AdminRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules():array
     {
         return [
             'name' => ['required'],
@@ -38,5 +38,8 @@ class AdminRequest extends FormRequest
             'password.required' => 'パスワードを入力してください',
             ];
      }
-
+        public function username(): string
+    {
+        return 'email';
+    }
 }
