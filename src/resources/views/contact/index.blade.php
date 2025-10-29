@@ -190,12 +190,11 @@
             <td class="confirm-value">
             <div class="form__input">
                 <select name="content"  >
-                    <option value="" disabled selected>選択してください</option>
-                    <option value="商品のお届けについて" {{old('content') == '商品のお届けについて' ? 'selected' : ''}}>商品のお届けについて</option>
-                    <option value="商品の交換について"{{old('content') == '商品の交換について' ? 'selected' : ''}}>商品の交換について</option>
-                    <option value="商品トラブル" {{old('content') == '商品トラブル' ? 'selected' : ''}}>商品トラブル</option>
-                    <option value="ショップへのお問い合わせ" {{old('content') == 'ショップへのお問い合わせ' ? 'selected' : ''}}>ショップへのお問い合わせ</option>
-                    <option value="その他" {{old('content') == 'その他' ? 'selected' : ''}}>その他</option>
+                     <option disabled selected>選択してください</option>
+            @foreach($categories as $category)
+            <option value="{{ $category->id }}" {{ old('category_id')==$category->id ? 'selected' : '' }}>{{
+              $category->content }}</option>
+            @endforeach
                 </select>
                 @if ($errors->has('content'))
                    <div class="form__error">

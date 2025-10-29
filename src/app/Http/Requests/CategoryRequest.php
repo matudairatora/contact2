@@ -51,7 +51,7 @@ class CategoryRequest extends FormRequest
             'tel_part3.required' => '電話番号を入力してください',
             'address.required' => '住所を入力してください',
             'content.required' => 'お問い合わせの種類を選択してください',
-            'detail.required' => 'お問い合わせを入力してください',
+            'detail.required' => 'お問い合わせ内容を入力してください',
             'detail.max:120' => 'お問い合わせの内容は１２０文字以内で入力してください'
          ];
      }

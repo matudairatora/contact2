@@ -65,7 +65,7 @@
             <tr>
                 <th class="confirm-label" >お問い合わせの種類</th>
                 <td class="confirm-value ">
-                   {{ $data['content'] }}
+                  {{ $category->content }}
                 </td>
             </tr>
 

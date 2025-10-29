@@ -10,8 +10,8 @@ use App\Http\Requests\CategoryRequest;
 class ContactController extends Controller
 {
     public function index(){
-
-        return view('contact.index');
+$categories = Category::all();
+        return view('contact.index',compact('categories'));
     }
 
     public function confirm(CategoryRequest $request)
@@ -27,8 +27,17 @@ class ContactController extends Controller
             '3' => 'その他', 
         ];
             $data['gender_text'] = $gender_map[$data['gender']];
-        
-        return view('contact.confirm', compact('data'));
+            $category_id = $data['content'];
+            $category = Category::find($category_id);
+            if ($category) {
+            $data['content_text'] = $category->content; 
+        } else {
+            // カテゴリが見つからなかった場合のデフォルト値（エラー防止のため）
+            $data['content_text'] = '不明';
+        }
+
+             
+        return view('contact.confirm', compact('data','category'));
     }
     
     
